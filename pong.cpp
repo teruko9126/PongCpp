@@ -1,11 +1,12 @@
-
 #include <SDL2/SDL.h>
 #include <iostream>
 #include "pong.hpp"
 
-Pong::Pong()
+Pong::Pong() : left_bar(Bar::Type::LEFT, 0, (400 / 2) - 50), right_bar(Bar::Type::RIGHT, 400 - 50, (400 / 2) - 50)
 {
-  game_window = SDL_CreateWindow("Pong", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 680, 480, 0);
+  SDL_CreateWindowAndRenderer(680, 480, 0, &game_window, &game_window_renderer);
+
+  SDL_RenderSetLogicalSize(game_window_renderer, 400, 400);
 }
 
 Pong::~Pong()
@@ -27,5 +28,16 @@ void Pong::loop()
         break;
       }
     }
+    draw();
   }
+}
+
+void Pong::draw()
+{
+  SDL_RenderClear(game_window_renderer);
+
+  left_bar.draw(game_window_renderer);
+  right_bar.draw(game_window_renderer);
+
+  SDL_RenderPresent(game_window_renderer);
 }

@@ -1,6 +1,6 @@
 #pragma once
 #include <SDL2/SDL.h>
-// #include "Bar.h"
+#include "bar.hpp"
 
 class Pong
 {
@@ -9,11 +9,13 @@ public:
   ~Pong();
 
   void loop();
+  void draw();
 
 private:
-  // Bar player_bar;
-  // Bar enemy_bar;
-  
+  Bar left_bar;
+  Bar right_bar;
+
   SDL_Window *game_window;
+  SDL_Renderer *game_window_renderer;
   SDL_Event m_window_event;
 };
