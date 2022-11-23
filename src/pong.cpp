@@ -25,9 +25,12 @@ void Pong::loop()
       {
       case SDL_QUIT:
         keep_window_open = false;
-        break;
       }
+
+      left_bar.handle_input(m_window_event);
+      right_bar.handle_input(m_window_event);
     }
+    update(1.0 / 60.0);
     draw();
   }
 }
@@ -40,4 +43,10 @@ void Pong::draw()
   right_bar.draw(game_window_renderer);
 
   SDL_RenderPresent(game_window_renderer);
+}
+
+void Pong::update(double delta_time)
+{
+  left_bar.update(delta_time);
+  right_bar.update(delta_time);
 }

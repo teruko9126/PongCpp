@@ -9,6 +9,8 @@ public:
   ~Pong();
 
   void loop();
+
+  void update(double delta_time);
   void draw();
 
 private:

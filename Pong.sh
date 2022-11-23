@@ -1,2 +1,2 @@
-make
-./Pong
+cmake -S . -B build
+cmake --build build/
